@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/nativeAdSmall"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".signer.MainActivitySigner"
+    tools:showIn="@layout/app_bar_main">
+
+    <LinearLayout
+        android:id="@+id/toDoEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_pdf_signature" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:paddingBottom="8dp"
+                android:text="No Documents Available"
+                android:textColor="@color/grey_10"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:paddingBottom="8dp"
+                android:text="Sign a save PDF and it will show up here"
+                android:textColor="@color/grey_10"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/tool">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:text="Sign PDF"
+            android:textColor="@color/tc"
+            android:textSize="18sp"
+            android:fontFamily="@font/bold"/>
+
+    </RelativeLayout>
+
+
+
+    <com.example.pdfjitpekc.signer.utils.RecyclerViewEmptySupport
+        android:id="@+id/mainRecycleView"
+        app:layout_constraintTop_toBottomOf="@id/tool"
+        android:layout_below="@id/tool"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

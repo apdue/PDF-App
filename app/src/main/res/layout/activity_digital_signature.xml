@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/docviewer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".signer.DigitalSignatureActivity">
+
+    <RelativeLayout
+        android:id="@+id/tool"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/grey_90">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Save"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tool">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.example.pdfjitpekc.signer.Document.PDSViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/pageNumberOverlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right|top"
+            android:layout_marginTop="@dimen/pagenumber_overlay_margin_top"
+            android:background="@drawable/pagenumber_indicator_theme"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pageNumberTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/pagenumber_left_margin"
+                android:layout_marginTop="@dimen/pagenumber_top_bottom_margin"
+                android:layout_marginRight="@dimen/pagenumber_right_margin"
+                android:layout_marginBottom="@dimen/pagenumber_top_bottom_margin"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif"
+                android:padding="0.0dip"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textViewTextSize" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/savingProgress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:id="@+id/fabSign"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_signature_"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

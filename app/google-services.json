@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619012932779",
+    "project_id": "nexttechemail-pdf-app",
+    "storage_bucket": "nexttechemail-pdf-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619012932779:android:b99520e7c6aacc06a0a3ee",
+        "android_client_info": {
+          "package_name": "com.mypdf.ocrpdfapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuOXjpL9QpPNk5tF8VZ6rJ30UflXCEMMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
