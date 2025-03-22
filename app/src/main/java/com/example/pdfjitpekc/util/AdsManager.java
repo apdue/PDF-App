@@ -3,8 +3,10 @@ package com.example.pdfjitpekc.util;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,15 @@ import com.example.pdfjitpekc.screens.SplashActivity;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdValue;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
+import com.google.android.gms.ads.ResponseInfo;
 import com.google.android.gms.ads.VideoController;
+import com.google.android.gms.ads.appopen.AppOpenAd;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -33,6 +40,9 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 public class AdsManager {
 
     public static final String TAG = "NewAdmobImpl";
@@ -133,7 +143,20 @@ public class AdsManager {
             Log.d(TAG, "showInterstitialAd: ");
             isInterstitialAdLoaded = false;
             mInterstitialAd.show(activity);
+            mInterstitialAd.setOnPaidEventListener(new OnPaidEventListener() {
+                @Override
+                public void onPaidEvent(@NonNull AdValue adValue) {
+                    logInterstitialAdImpression(activity, adValue, mInterstitialAd);
+                }
+            });
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+
+                @Override
+                public void onAdImpression() {
+                    super.onAdImpression();
+                    logInterstitialAdImpressionOnly(activity, new PrefManagerVideo(activity).getString(SplashActivity.TAG_INTERSTITIALMAIN));
+                }
+
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
@@ -218,6 +241,14 @@ public class AdsManager {
                     public void onNativeAdLoaded(NativeAd nativeAd) {
                         Log.d(TAG, "onNativeAdLoaded: SMALL");
 
+                        nativeAd.setOnPaidEventListener(new OnPaidEventListener() {
+                            @Override
+                            public void onPaidEvent(@NonNull AdValue adValue) {
+                                logNativeAdImpression(activity, adValue, nativeAd, new PrefManagerVideo(activity).getString(SplashActivity.TAG_NATIVEIDSMALL_fifteen));
+                            }
+                        });
+
+
                         boolean isDestroyed = false;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                             isDestroyed = activity.isDestroyed();
@@ -240,7 +271,15 @@ public class AdsManager {
                     }
                 });
 
+
+
                 AdLoader adLoader = builder.withAdListener(new AdListener() {
+                    @Override
+                    public void onAdImpression() {
+                        super.onAdImpression();
+                        logNativeAdImpressionOnly(activity, new PrefManagerVideo(activity).getString(SplashActivity.TAG_NATIVEIDSMALL_fifteen));
+                    }
+
                     @Override
                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                         Log.d(TAG, "onAdFailedToLoadNATIVESMALL: " + loadAdError.getMessage());
@@ -256,6 +295,13 @@ public class AdsManager {
                     public void onNativeAdLoaded(NativeAd nativeAd) {
                         boolean isDestroyed = false;
                         Log.d(TAG, "onNativeAdLoaded: LARGE");
+
+                        nativeAd.setOnPaidEventListener(new OnPaidEventListener() {
+                            @Override
+                            public void onPaidEvent(@NonNull AdValue adValue) {
+                                logNativeAdImpression(activity, adValue, nativeAd, new PrefManagerVideo(activity).getString(SplashActivity.TAG_NATIVEID));
+                            }
+                        });
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                             isDestroyed = activity.isDestroyed();
@@ -277,6 +323,12 @@ public class AdsManager {
 
 
                 AdLoader adLoader = builder.withAdListener(new AdListener() {
+
+                    @Override
+                    public void onAdImpression() {
+                        super.onAdImpression();
+                        logNativeAdImpressionOnly(activity, new PrefManagerVideo(activity).getString(SplashActivity.TAG_NATIVEID));
+                    }
                     @Override
                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                         Log.d(TAG, "onAdFailedToLoad: LARGE" + loadAdError.toString());
@@ -294,6 +346,13 @@ public class AdsManager {
                     public void onNativeAdLoaded(NativeAd nativeAd) {
                         boolean isDestroyed = false;
                         Log.d(TAG, "onNativeAdLoaded: LARGE");
+
+                        nativeAd.setOnPaidEventListener(new OnPaidEventListener() {
+                            @Override
+                            public void onPaidEvent(@NonNull AdValue adValue) {
+                                logNativeAdImpression(activity, adValue, nativeAd, new PrefManagerVideo(activity).getString(SplashActivity.TAG_NATIVEID));
+                            }
+                        });
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                             isDestroyed = activity.isDestroyed();
@@ -316,6 +375,12 @@ public class AdsManager {
 
 
                 AdLoader adLoader = builder.withAdListener(new AdListener() {
+                    @Override
+                    public void onAdImpression() {
+                        super.onAdImpression();
+                        logNativeAdImpressionOnly(activity, new PrefManagerVideo(activity).getString(SplashActivity.TAG_NATIVEID));
+                    }
+
                     @Override
                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                         Log.d(TAG, "onAdFailedToLoad: LARGE" + loadAdError.toString());
@@ -414,5 +479,220 @@ public class AdsManager {
             });
         }
     }
+
+
+    public static void logBannerAdImpression(Context context, AdValue adValue, AdView adView) {
+
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+
+        try {
+            if (!prf.getString("firstonpd").contains("yes")) return;
+
+            if (adValue == null || adView == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adView.getAdUnitId());
+            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "Banner");
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "AdMob");
+            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(adView.getResponseInfo()));
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    public static void logBannerAdImpressionOnly(Context context, String adUnitId) {
+
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+
+        try {
+            if (!prf.getString("secondonim").contains("yes")) return;
+
+            if (adUnitId == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adUnitId);
+//            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+//            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "Banner");
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "AdMob");
+//            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(adView.getResponseInfo()));
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    public static void logAppOpenAdImpression(Context context, AdValue adValue, AppOpenAd appOpenAd) {
+
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+        try {
+            if (!prf.getString("firstonpd").contains("yes")) return;
+
+            if (adValue == null || appOpenAd == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, appOpenAd.getAdUnitId());
+            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "App Open");
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "AdMob");
+            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(appOpenAd.getResponseInfo()));
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    public static void logAppOpenAdImpressionOnly(Context context, String adUnitId) {
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+        try {
+            if (!prf.getString("secondonim").contains("yes")) return;
+
+            if (adUnitId == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adUnitId);
+//            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+//            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "App Open");
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "AdMob");
+//            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(appOpenAd.getResponseInfo()));
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    public static void logInterstitialAdImpression(Context context, AdValue adValue, InterstitialAd interstitialAd) {
+
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+        try {
+            if (!prf.getString("firstonpd").contains("yes")) return;
+
+            if (adValue == null || interstitialAd == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, interstitialAd.getAdUnitId());
+            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "Interstitial");
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "AdMob");
+            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(interstitialAd.getResponseInfo()));
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    public static void logInterstitialAdImpressionOnly(Context context, String adUnitId) {
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+
+        try {
+            if (!prf.getString("secondonim").contains("yes")) return;
+
+            if (adUnitId == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adUnitId);
+//            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+//            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "Interstitial");
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "AdMob");
+//            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(interstitialAd.getResponseInfo()));
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    private static void logNativeAdImpression(Context context, AdValue adValue, NativeAd adView, String adUnitId) {
+
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+
+        try {
+
+            if (!prf.getString("firstonpd").contains("yes")) return;
+
+            if (adValue == null || adView == null || context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adUnitId);// adView.getAdUnitId() not for native
+            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());//done
+            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);//or long valueMicros = adValue.getValueMicros();
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "Native"); // "Banner", "Interstitial", "Rewarded", "RewardedInterstitial", "Native", "App Open"
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "Admob");// check =adValue.getAdNetwork()
+            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(adView.getResponseInfo()));//check =adValue.getAdNetwork()
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    private static void logNativeAdImpressionOnly(Context context, String adUnitId) {
+
+        PrefManagerVideo prf = new PrefManagerVideo(context);
+
+        try {
+            if (!prf.getString("secondonim").contains("yes")) return;
+
+            if (context == null) return;
+
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adUnitId);// adView.getAdUnitId() not for native
+//            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());//done
+//            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1000000.0);//or long valueMicros = adValue.getValueMicros();
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, "Native"); // "Banner", "Interstitial", "Rewarded", "RewardedInterstitial", "Native", "App Open"
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "Admob");// check =adValue.getAdNetwork()
+//            params.putString(FirebaseAnalytics.Param.AD_SOURCE, getAdSource(adView.getResponseInfo()));//check =adValue.getAdNetwork()
+
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            FirebaseCrashlytics.getInstance().recordException(e);
+        }
+    }
+
+    // Helper method to extract ad source from ResponseInfo
+    private static String getAdSource(ResponseInfo responseInfo) {
+        try {
+            if (responseInfo == null || responseInfo.getLoadedAdapterResponseInfo() == null) {
+                return "unknown";
+            }
+            String adSourceName = responseInfo.getLoadedAdapterResponseInfo().getAdSourceName();
+            return adSourceName != null ? adSourceName : "unknown_adapter";
+        } catch (Exception e) {
+            //Log.e("AdLogger", "Error getting ad source", e);
+            FirebaseCrashlytics.getInstance().recordException(e);
+            return "unknown_error";
+        }
+    }
+
+
 
 }

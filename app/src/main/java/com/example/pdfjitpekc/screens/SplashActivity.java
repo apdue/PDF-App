@@ -55,6 +55,10 @@ public class SplashActivity extends AppCompatActivity {
     public static final String proxy_host = "proxy_host";
     public static final String webview_url = "webview_url";
 
+
+    public static final String firstonpd = "firstonpd";
+    public static final String secondonim = "secondonim";
+
     public static final String status_dummy_two_back_enabled = "status_dummy_two_back_enabled";
     Map<String, String> params = new HashMap<>();
     public static final String inter_ad_type = "inter_ad_type";
@@ -216,7 +220,6 @@ public class SplashActivity extends AppCompatActivity {
         prf.setString(status_dummy_five_enabled, "false");
         prf.setString(dummy_four_screen, "ad");
 
-
         prf.setString(interstitial_type, "admob");
         prf.setString(proxy_username, "admob");
         prf.setString(proxy_password, "admob");
@@ -224,9 +227,8 @@ public class SplashActivity extends AppCompatActivity {
         prf.setString(proxy_host, "admob");
         prf.setString(webview_url, "admob");
 
-
-
-
+        prf.setString(firstonpd, "false");
+        prf.setString(secondonim, "false");
 
         prf.setString(status_dummy_two_back_enabled, "false");
         prf.setString(status_dummy_one_enabled_fifteen, "false");
@@ -501,6 +503,8 @@ public class SplashActivity extends AppCompatActivity {
 
                     prf.setString(dummy_four_screen, json.getString(dummy_four_screen));
 
+                    prf.setString(firstonpd, json.getString(firstonpd));
+                    prf.setString(secondonim, json.getString(secondonim));
 
                     prf.setString(interstitial_type, json.getString(interstitial_type));
                     prf.setString(proxy_username, json.getString(proxy_username));

@@ -30,6 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PdfJitpekc"
         tools:targetApi="31">
+
         <meta-data
             android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
             android:value="false" />
