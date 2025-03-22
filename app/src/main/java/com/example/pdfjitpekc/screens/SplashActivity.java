@@ -70,6 +70,7 @@ public class SplashActivity extends AppCompatActivity {
     public static final String TAG_APP_ID_AD_UNIT_ID = "app_id_ad_unit_id";
     public AppOpenAd appOpenAd;
     public static final String TAG_NATIVEIDSMALL_fifteen = "nativeid_small";
+    public static final String enable_extract_feature = "enable_extract_feature";
     public static final String ADMOB_INTERSTITIAL_FREQUENCY = "ADMOB_INTERSTITIAL_FREQUENCY";
     public static final String TAG_NATIVEID = "nativeid";
     public static final String status_dummy_five_back_enabled = "status_dummy_five_back_enabled";
@@ -213,6 +214,7 @@ public class SplashActivity extends AppCompatActivity {
         prf.setString(TAG_OPENAPP_ADS_ENABLED, "no");
         prf.setString("skipfirstscreen", "1");
         prf.setString(TAG_NATIVEIDSMALL_fifteen, "ca-app-pub-3940256099942544/2247696110");
+        prf.setString(enable_extract_feature, "false");
         prf.setString(status_dummy_one_back_enabled, "false");
         prf.setString(dummy_three_screen, "ad");
         prf.setString(TAG_APP_ID_AD_UNIT_ID, "ca-app-pub-3940256099942544~3347511713");
@@ -486,9 +488,11 @@ public class SplashActivity extends AppCompatActivity {
                     }
 
                     prf.setString(TAG_APP_ID_AD_UNIT_ID, json.getString(TAG_APP_ID_AD_UNIT_ID));
+
                     prf.setString(dummy_two_screen, json.getString(dummy_two_screen));
 
                     prf.setString(TAG_NATIVEIDSMALL_fifteen, json.getString(TAG_NATIVEIDSMALL_fifteen));
+                    prf.setString(enable_extract_feature, json.getString(enable_extract_feature));
                     prf.setString(exit_screen, json.getString(exit_screen));
                     prf.setString(TAG_INTERSTITIALMAIN, json.getString(TAG_INTERSTITIALMAIN));
                     prf.setString(dummy_one_screen, json.getString(dummy_one_screen));

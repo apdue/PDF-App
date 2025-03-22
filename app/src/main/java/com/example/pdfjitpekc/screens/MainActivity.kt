@@ -80,6 +80,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.pdfjitpekc.model.PdfFile
@@ -90,6 +91,7 @@ import com.example.pdfjitpekc.ui.ExtractPDFTextActivity
 import com.example.pdfjitpekc.ui.theme.PdfJitpekcTheme
 import com.example.pdfjitpekc.util.ComposeAdsManager
 import com.example.pdfjitpekc.util.FileUtils
+import com.example.pdfjitpekc.util.PrefManagerVideo
 import com.example.pdfjitpekc.util.showInterstitialAd
 import com.example.pdfjitpekc.viewmodel.PdfViewModel
 import com.example.pdfjitpekc.viewmodel.SortOrder
@@ -142,6 +144,8 @@ class MainActivity : ComponentActivity() {
 
         // Handle intent if opened from external source
         handleIntent(intent)
+
+
 
         setContent {
             val isInPdfView by viewModel.isInPdfView.collectAsStateWithLifecycle(initialValue = false)
@@ -358,17 +362,20 @@ fun PdfListScreen(
                                 contentDescription = "Search PDF Files"
                             )
                         }
-                        IconButton(
-                            onClick = {
-                                val intent = Intent(context, ExtractPDFTextActivity::class.java)
-                                context.startActivity(intent)
+                        if(PrefManagerVideo(context).getString(SplashActivity.enable_extract_feature).contains("true")){
+                            IconButton(
+                                onClick = {
+                                    val intent = Intent(context, ExtractPDFTextActivity::class.java)
+                                    context.startActivity(intent)
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.TextFields,
+                                    contentDescription = "Extract Text"
+                                )
                             }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.TextFields,
-                                contentDescription = "Extract Text"
-                            )
                         }
+
                         // View type toggle
                         IconButton(
                             onClick = {

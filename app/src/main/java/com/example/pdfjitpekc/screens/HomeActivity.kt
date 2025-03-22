@@ -1,6 +1,9 @@
 package com.example.pdfjitpekc.screens
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
@@ -49,6 +52,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.pdfjitpekc.dummy.FifthActivity
 import com.example.pdfjitpekc.dummy.FirstActivity
 import com.example.pdfjitpekc.dummy.FourthActivity
@@ -72,7 +77,11 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         pref = PrefManagerVideo(this)
         analytics = FirebaseAnalytics.getInstance(this)
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
+            }
+        }
         setContent {
             // Handle back press
             BackHandler(enabled = true) {
