@@ -22,7 +22,7 @@ public class FourthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_screen_four);
 
         if (new PrefManagerVideo(this).getString(SplashActivity.dummy_one_screen).contains("ad")) {
-            AdsManager.showAndLoadNativeAd(this, findViewById(R.id.nativeAd),1);
+            AdsManager.showAndLoadNativeAd(this, findViewById(R.id.nativeAd), 1);
         }
 
         AdsManager.showAndLoadNativeAd(this, findViewById(R.id.nativeAdTwo), 2);
@@ -47,9 +47,9 @@ public class FourthActivity extends AppCompatActivity {
 
         if (new PrefManagerVideo(this).getString(SplashActivity.status_dummy_five_enabled).contains("true") && !new PrefManagerVideo(FourthActivity.this).getString(SplashActivity.TAG_NATIVEID).contains("sandeep") && !new PrefManagerVideo(FourthActivity.this).getString(SplashActivity.TAG_NATIVEID).contains("sandeep")) {
             intent = new Intent(this, FifthActivity.class);
-        }  else if (new PrefManagerVideo(this).getString(SplashActivity.status_dummy_six_enabled).contains("true")) {
+        } else if (new PrefManagerVideo(this).getString(SplashActivity.status_dummy_six_enabled).contains("true")) {
             intent = new Intent(this, SixthActivity.class);
-        }else {
+        } else {
             intent = new Intent(this, HomeActivity.class);
         }
 
