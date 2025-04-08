@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.example.pdfjitpekc.signer.Signature.SignatureView
+    <com.mypdf.ocrpdfapp.signer.Signature.SignatureView
         android:id="@+id/signatureview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
-    </com.example.pdfjitpekc.signer.Signature.SignatureView>
+    </com.mypdf.ocrpdfapp.signer.Signature.SignatureView>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/deleteSignature"

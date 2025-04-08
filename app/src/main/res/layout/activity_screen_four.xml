@@ -3,58 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#FFFCFC"
     tools:context=".dummy.FourthActivity">
+
+    <RelativeLayout
+        android:id="@+id/nativeAdTwo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/nativeS">
+        android:layout_above="@id/nativeAdLayout"
+        android:layout_below="@id/nativeAdTwo">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/nativeAd"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="200dp" />
-
-            <RelativeLayout
-                android:id="@+id/btnNext"
-                android:layout_width="140dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:onClick="CLICK"
-                android:layout_marginVertical="15dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/bg_button">
-
-                <TextView
-                    style="@style/fontBoldStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/bold"
-                    android:text="Next Screen"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
+                android:layout_height="200dp"
+                android:src="@drawable/img_pdf_2" />
 
             <TextView
                 style="@style/fontBoldStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/bold"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/bold"
                 android:gravity="center"
-                android:text="@string/hFive"
+                android:text="@string/hFour"
                 android:textColor="#1C272B"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -65,32 +47,44 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/worksans"
+                android:fontFamily="@font/reg"
                 android:gravity="center_horizontal"
-                android:text="@string/bFive"
+                android:text="@string/bFour"
                 android:textColor="#1C272B"
                 android:textSize="18sp" />
 
-            <include
-                layout="@layout/image_layout"/>
-
         </LinearLayout>
-
     </ScrollView>
 
+
     <RelativeLayout
-        android:id="@+id/nativeS"
+        android:id="@+id/nativeAdLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom">
+        android:layout_height="270dp"
+        android:layout_above="@id/tvNext">
+
 
         <RelativeLayout
-            android:id="@+id/nativeLayoutSmaller"
+            android:id="@+id/nativeAd"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="100dp"
-            android:gravity="center" />
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tvNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textColor="#1C272B"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+
 </RelativeLayout>

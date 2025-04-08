@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PDF Editor</string>
+    <string name="app_name">PDF Viewer</string>
 
-    <string name="facebook_app_id">2542720795933090</string>
-    <string name="facebook_client_token">6d7d17ee349fd9b3f5d435799fa55</string>
+    <string name="facebook_app_id">1684145389180368</string>
+    <string name="facebook_client_token">49d2548e094b8c8fe0d3bd31e4739c1d</string>
 
     <string name="hOne">📂 Seamless Integration &amp; Powerful PDF Reader</string>
-    <string name="bOne">Effortlessly integrate our downloader with popular web browsers using our browser extension. With a simple installation, you can initiate downloads directly from your browser, streamlining the process and saving you time.&#10;&#10;Open, view, and navigate PDFs effortlessly with our smooth and feature-rich reader. Enjoy a seamless reading experience with zoom, search, and page navigation tools for ultimate convenience.</string>
+    <string name="bOne">Keep your important files safe with reliable processing and document integrity.</string>
 
     <string name="hTwo">🖼️ Convert Images &amp; PDFs with Ease</string>
-    <string name="bTwo">Turn your photos, scanned documents, and screenshots into professional PDFs in just a few taps. Preserve quality and share documents with ease, whether it\'s receipts, notes, or important papers.&#10;&#10;Need images from a PDF? Convert any document into high-quality images while maintaining clarity. Perfect for sharing, printing, or extracting specific pages without hassle.</string>
+    <string name="bTwo">Turn your photos, scanned documents, and screenshots into professional PDFs. </string>
 
     <string name="hThree">🔻 Compress &amp; Split PDFs</string>
-    <string name="bThree">Large PDFs? No problem! Compress files without losing quality, making them easier to store, share, and upload. Save space on your device while keeping documents clear and readable.&#10;&#10;Break down large PDFs into smaller sections effortlessly. Extract specific pages or split documents into multiple files for better organization and quick access.</string>
+    <string name="bThree">Large PDFs? No problem! Compress files without losing quality.</string>
 
     <string name="hFour">✍️ Sign &amp; Secure Your Documents</string>
-    <string name="bFour">Digitally sign your documents with ease. Add your signature directly to contracts, forms, or agreements without printing—fast, secure, and legally binding.&#10;&#10;Keep your important files safe with reliable processing and document integrity, ensuring your PDFs remain private and secure.</string>
+    <string name="bFour">Digitally sign your documents with ease. Add your signature directly.</string>
 
     <string name="hFive">🚀 Fast, Reliable &amp; User-Friendly</string>
-    <string name="bFive">Enjoy a smooth and intuitive experience with a powerful yet easy-to-use interface. Our app is designed for efficiency, ensuring quick access to features and hassle-free document management.&#10;&#10;Whether you\'re reading, converting, compressing, or signing PDFs, everything is optimized to save time and effort while maintaining top-notch quality.</string>
-
-
-    <!--    <string name="hOne">📂 Seamless Integration &amp;amp; Powerful PDF Reader</string>-->
-<!--    <string name="bOne">Effortlessly integrate our downloader with popular web browsers using our browser extension. With a simple installation, you can initiate downloads directly from your browser, streamlining the process and saving you time. \n\n Open, view, and navigate PDFs effortlessly with our smooth and feature-rich reader. Enjoy a seamless reading experience with zoom, search, and page navigation tools for ultimate convenience.</string>-->
-
-<!--    <string name="hTwo">🖼️ Convert Images &amp; PDFs with Ease</string>-->
-<!--    <string name="bTwo">Turn your photos, scanned documents, and screenshots into professional PDFs in just a few taps. Preserve quality and share documents with ease, whether it\'s receipts, notes, or important papers. \n\n Need images from a PDF? Convert any document into high-quality images while maintaining clarity. Perfect for sharing, printing, or extracting specific pages without hassle.</string>-->
-
-<!--    <string name="hThree">🔻 Compress &amp; Split PDFs</string>-->
-<!--    <string name="bThree">Large PDFs? No problem! Compress files without losing quality, making them easier to store, share, and upload. Save space on your device while keeping documents clear and readable. \n\n Break down large PDFs into smaller sections effortlessly. Extract specific pages or split documents into multiple files for better organization and quick access.</string>-->
-
-<!--    <string name="hFour">✍️ Sign &amp; Secure Your Documents</string>-->
-<!--    <string name="bFour">Digitally sign your documents with ease. Add your signature directly to contracts, forms, or agreements without printing—fast, secure, and legally binding. \n\n Keep your important files safe with reliable processing and document integrity, ensuring your PDFs remain private and secure.</string>-->
-
-<!--    <string name="hFive">🚀 Fast, Reliable &amp; User-Friendly</string>-->
-<!--    <string name="bFive">Enjoy a smooth and intuitive experience with a powerful yet easy-to-use interface. Our app is designed for efficiency, ensuring quick access to features and hassle-free document management. \n\n Whether you're reading, converting, compressing, or signing PDFs, everything is optimized to save time and effort while maintaining top-notch quality.</string>-->
+    <string name="bFive">Enjoy a smooth and intuitive experience with a powerful yet easy interface.</string>
+    <string name="next"><u>Next</u></string>
 
 </resources>

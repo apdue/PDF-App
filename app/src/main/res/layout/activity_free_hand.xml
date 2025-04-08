@@ -31,7 +31,7 @@
                 android:layout_marginBottom="@dimen/signature_base_line_bottom_margin"
                 android:background="@color/signature_blue" />
 
-            <com.example.pdfjitpekc.signer.Signature.SignatureView
+            <com.mypdf.ocrpdfapp.signer.Signature.SignatureView
                 android:id="@+id/inkSignatureOverlayView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

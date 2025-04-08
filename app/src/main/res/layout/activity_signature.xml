@@ -4,14 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Signature.SignatureActivity">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/bg"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"/>
+    tools:context=".signer.Signature.SignatureActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/create_signature"
@@ -32,7 +25,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_signature_"
+            android:src="@drawable/ic_sign"
             android:tint="@color/colorPrimaryDark" />
 
         <LinearLayout
@@ -63,7 +56,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.example.pdfjitpekc.signer.utils.RecyclerViewEmptySupport
+    <com.mypdf.ocrpdfapp.signer.utils.RecyclerViewEmptySupport
         android:id="@+id/mainRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

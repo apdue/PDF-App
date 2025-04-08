@@ -15,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PdfJitpekc"
+rootProject.name = "PDF-Editor"
 include(":app")
  

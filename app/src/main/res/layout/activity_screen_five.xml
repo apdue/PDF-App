@@ -3,96 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".dummy.FifthActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFCFC"
+    tools:context=".dummy.ThirdActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/nativeS">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/nativeAd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="200dp" />
-
-            <RelativeLayout
-                android:id="@+id/btnNext"
-                android:layout_width="240dp"
-                android:layout_height="55dp"
-                android:onClick="CLICK"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginVertical="15dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/bg_button">
-
-                <TextView
-                    style="@style/fontBoldStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/bold"
-                    android:text="Start PDF Editor"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
-
-            <TextView
-                style="@style/fontBoldStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/bold"
-                android:gravity="center"
-                android:text="@string/hFour"
-                android:textColor="#1C272B"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/worksans"
-                android:text="@string/bFour"
-                android:gravity="center_horizontal"
-                android:textColor="#1C272B"
-                android:textSize="18sp" />
-
-            <include
-                layout="@layout/image_layout"/>
-
-
-        </LinearLayout>
-
-    </ScrollView>
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/close"
+        android:layout_marginEnd="100dp"/>
 
     <RelativeLayout
-        android:id="@+id/nativeS"
+        android:id="@+id/nativeAd"
+        android:layout_below="@id/close"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom">
-
-        <RelativeLayout
-            android:id="@+id/nativeLayoutSmaller"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="100dp"
-            android:gravity="center" />
-
-    </RelativeLayout>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

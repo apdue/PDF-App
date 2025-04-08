@@ -3,71 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#FFFCFC"
     tools:context=".dummy.SecondActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/nativeS">
+        android:layout_height="250dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:id="@+id/nativeAd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="200dp" />
-
-                <RelativeLayout
-                    android:id="@+id/rlCustomAd"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                         />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#FFC107"
-                        android:text="Ad"
-                        android:textColor="@color/white" />
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/btnNext"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_gravity="end"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="15dp"
-                android:background="@drawable/bg_button">
-
-                <TextView
-                    style="@style/fontBoldStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/bold"
-                    android:text="Next Screen"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
 
             <TextView
                 style="@style/fontBoldStyle"
@@ -75,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
                 android:text="@string/hTwo"
@@ -88,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/worksans"
+                android:fontFamily="@font/reg"
                 android:gravity="center_horizontal"
                 android:text="@string/bTwo"
                 android:textColor="#1C272B"
@@ -96,24 +45,43 @@
 
             <include layout="@layout/image_layout" />
 
-
         </LinearLayout>
-
     </ScrollView>
 
+
     <RelativeLayout
-        android:id="@+id/nativeS"
+        android:id="@+id/nativeAdTwo"
         android:layout_width="match_parent"
+        android:layout_below="@id/scrollView"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/tvNext"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/nativeAdTwo"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textColor="#1C272B"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/nativeAdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
-            android:id="@+id/nativeLayoutSmaller"
+            android:id="@+id/nativeAd"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="100dp" />
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
+
 </RelativeLayout>

@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.example.pdfjitpekc.signer.Document.PDSViewPager
+            <com.mypdf.ocrpdfapp.signer.Document.PDSViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -80,7 +80,7 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="20dp"
         android:tint="@color/white"
-        app:srcCompat="@drawable/ic_signature_"
+        app:srcCompat="@drawable/ic_sign"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
